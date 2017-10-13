@@ -57,5 +57,25 @@ Back to <a href="../">table list</a>.
     {% endfor %}
 </table>
 
+<h2>Foreign Keys</h2>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>columns</th>
+        <th>referenced table</th>
+        <th>referenced columns</th>
+    </tr>
+    {% for k in keys %}
+        {% if k['type'] == 'FOREIGN KEY' %}
+            <tr>
+                <td>{{ k['name'] }}</td>
+                <td>{{ k['columns'] }}</td>
+                <td>{{ k['ref_schema'] }}.{{ k['ref_table'] }}</td>
+                <td>{{ k['ref_columns'] }}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
 </body>
 </html>

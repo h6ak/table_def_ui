@@ -61,7 +61,10 @@ select_keys = """
 SELECT
   kcu.constraint_name AS name,
   GROUP_CONCAT(DISTINCT tc.constraint_type) AS type,
-  GROUP_CONCAT(kcu.column_name ORDER BY ordinal_position SEPARATOR ', ') AS columns
+  GROUP_CONCAT(kcu.column_name ORDER BY ordinal_position SEPARATOR ', ') AS columns,
+  GROUP_CONCAT(DISTINCT kcu.referenced_table_schema) AS ref_schema,
+  GROUP_CONCAT(DISTINCT kcu.referenced_table_name) AS ref_table,
+  GROUP_CONCAT(kcu.referenced_column_name ORDER BY ordinal_position SEPARATOR ', ') AS ref_columns
 FROM
   key_column_usage kcu
 JOIN
