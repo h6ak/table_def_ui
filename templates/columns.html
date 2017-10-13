@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table {{ schema }}.{{ table }}</title>
+</head>
+<body>
+<h1>Table {{ schema }}.{{ table }}</h1>
+Back to <a href="../">table list</a>.
+
+<h2>Table Information</h2>
+<table border="1">
+    <tr><th>name</th><td>{{ table }}</td></tr>
+    <tr><th>engine</th><td>{{ table_info['engine'] }}</td></tr>
+    <tr><th>rows</th><td>{{ table_info['table_rows'] }}</td></tr>
+    <tr><th>collation</th><td>{{ table_info['table_collation'] }}</td></tr>
+    <tr><th>create time</th><td>{{ table_info['create_time'] }}</td></tr>
+    <tr><th>update time</th><td>{{ table_info['update_time'] }}</td></tr>
+    <tr><th>comment</th><td>{{ table_info['table_comment'] }}</td></tr>
+</table>
+
+<h2>Columns</h2>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>nullable</th>
+        <th>default</th>
+        <th>extra</th>
+        <th>comment</th>
+    </tr>
+    {% for tb in columns %}
+    <tr>
+        <td>{{ tb['column_name'] }}</td>
+        <td>{{ tb['column_type'] }}</td>
+        <td>{{ tb['is_nullable'] }}</td>
+        <td>{{ tb['column_default'] }}</td>
+        <td>{{ tb['extra'] }}</td>
+        <td>{{ tb['column_comment'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Keys</h2>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>columns</th>
+    </tr>
+    {% for k in keys %}
+    <tr>
+        <td>{{ k['name'] }}</td>
+        <td>{{ k['type'] }}</td>
+        <td>{{ k['columns'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tables in Schema {{ schema }}</title>
+</head>
+<body>
+<h1>Tables in Schema {{ schema }}</h1>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>engine</th>
+        <th>rows</th>
+        <th>collation</th>
+        <th>create time</th>
+        <th>update time</th>
+        <th>comment</th>
+    </tr>
+    {% for tb in tables %}
+    <tr>
+        <td><a href="{{ tb['table_name'] }}">{{ tb['table_name'] }}</a></td>
+        <td>{{ tb['engine'] }}</td>
+        <td>{{ tb['table_rows'] }}</td>
+        <td>{{ tb['table_collation'] }}</td>
+        <td>{{ tb['create_time'] }}</td>
+        <td>{{ tb['update_time'] }}</td>
+        <td>{{ tb['table_comment'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
