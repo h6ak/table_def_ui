@@ -2,7 +2,15 @@ from flask import Flask, render_template
 import mysql.connector as sql
 
 app = Flask(__name__)
-connection = sql.connect(host='localhost', user='root', password='', port='3306', database='information_schema')
+app.config.from_envvar('FLASK_CONFIG_FILE')
+
+connection = sql.connect(
+    host=app.config['DB_HOST'],
+    user=app.config['DB_USER'],
+    password=app.config['DB_PASSWORD'],
+    port=app.config['DB_PORT'],
+    database='information_schema'
+)
 
 select_tables = """
 SELECT
