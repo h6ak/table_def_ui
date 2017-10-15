@@ -84,13 +84,13 @@ GROUP BY
 def show_tables(schema_name):
     cursor = connection.cursor(buffered=True, dictionary=True)
     cursor.execute(select_tables, {'schema': schema_name})
-    table = cursor.fetchall()
+    tables = cursor.fetchall()
     cursor.close()
 
     return render_template(
         'tables.html',
         schema=schema_name,
-        tables=table
+        tables=tables
     )
 
 
