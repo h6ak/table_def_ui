@@ -2,7 +2,7 @@
 
 ## What is this ?
 Table Def UI is a web application which shows the table definition document.
-Unfortunately, this application supports only MySQL as a database.
+This application supports MySQL or MariaDB as a database.
 
 ## Requirements
 MySQL and Python 3.x are required.
